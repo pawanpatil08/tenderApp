@@ -6,24 +6,33 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-label class="heading">Welcome Back </ion-label>
-  <ion-label class="center txt">Log in to your existing accout </ion-label>
-
+  <section>
+    <ion-label class="heading">Welcome Back </ion-label>
+    <ion-label class="center txt">Log in to your existing account</ion-label>
+  </section>
   <form [formGroup]="loginForm">
     <ion-item>
       <ion-icon color="primary" name="person"></ion-icon>
-      <ion-input type="email" color="primary"  shape="round" placeholder="nom@exemple.fr" formControlName="email" required></ion-input>
+      <ion-input type="email" color="primary" shape="round" placeholder="nom@exemple.fr" formControlName="email"
+        required></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon color="primary" name="lock-closed"></ion-icon>
-      <ion-input type="password" color="primary"  shape="round" placeholder="******" formControlName="password" required></ion-input>
+      <ion-input type="password" color="primary" shape="round" placeholder="******" formControlName="password" required>
+      </ion-input>
     </ion-item>
     <ion-grid>
       <ion-row class="center ion-align-self-center">
-        <ion-button [disabled]="loginForm.invalid" shape="round"
-         color="primary">Login</ion-button>
+        <ion-button [disabled]="loginForm.invalid" shape="round" (click)="loginForm()" color="primary">Login
+        </ion-button>
       </ion-row>
     </ion-grid>
   </form>
+  <ion-label class="center txt color">Or connect using </ion-label>
+  <section class="center">
+    <ion-img src="../assets/img/facebook.png"></ion-img>
+    <ion-img src="../assets/img/google.png"></ion-img>
+  </section>
+  <ion-label class="center txt color">Don't have account? &nbsp;<a routerLink="/dashboard"> Sign up</a> </ion-label>
 
 </ion-content>

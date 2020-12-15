@@ -14,8 +14,8 @@ export class LoginPage implements OnInit {
   });
   ngOnInit() {
   }
-  todo = {}
+  
   logForm() {
-    console.log(this.todo)
+    console.log(this.loginForm);
   }
 }
