@@ -1,10 +1,29 @@
-<!-- <ion-header [translucent]="true" > -->
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button auto-hide="false" color="primary"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
-<!-- </ion-header> -->
+</ion-header>
 <ion-content>
-  <h4>Login Page</h4>
+  <ion-label class="heading">Welcome Back </ion-label>
+  <ion-label class="center txt">Log in to your existing accout </ion-label>
+
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-icon color="primary" name="person"></ion-icon>
+      <ion-input type="email" color="primary"  shape="round" placeholder="nom@exemple.fr" formControlName="email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon color="primary" name="lock-closed"></ion-icon>
+      <ion-input type="password" color="primary"  shape="round" placeholder="******" formControlName="password" required></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row class="center ion-align-self-center">
+        <ion-button [disabled]="loginForm.invalid" shape="round"
+         color="primary">Login</ion-button>
+      </ion-row>
+    </ion-grid>
+  </form>
+
 </ion-content>
