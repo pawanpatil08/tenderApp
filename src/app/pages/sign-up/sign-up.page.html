@@ -8,7 +8,7 @@
 
 <ion-content>
   <section>
-    <ion-label class="heading">Let'us get started!</ion-label>
+    <ion-label class="heading">Let's get started!</ion-label>
     <ion-label class="center txt">Create an acccount to TenderApp to get all features</ion-label>
   </section>
   <form #form="ngForm" (ngSubmit)="register(form)">
@@ -23,6 +23,10 @@
             <ion-item>
               <ion-icon color="primary" name="mail"></ion-icon>
               <ion-input name="email" color="primary" type="email" placeholder="your@email.com" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon color="primary" name="call"></ion-icon>
+              <ion-input name="phone" color="primary" type="number" placeholder="Contact No" ngModel required></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon color="primary" name="lock-closed"></ion-icon>
