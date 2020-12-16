@@ -1,0 +1,41 @@
+ion-content{
+    
+    @mixin center {
+        display: flex;
+        justify-content: center;
+
+    }
+    .heading {
+        @include center();
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 30%;
+    }
+    .center{
+        @include center();
+    }
+    .txt{
+        margin-top: 2%;
+    }
+    .color{
+        color: gray;
+    }
+    form {
+        margin: 8%;
+        ion-item{
+            margin-bottom: 5%;
+        }
+        ion-icon{
+            font-size: 15px;
+            margin-right: 10%;
+        }
+        ion-button {
+            width: 70%;
+        }
+    }
+    ion-img {
+        width: 10%;
+        margin:5% 1%;
+        cursor: pointer;
+    }
+}

@@ -7,33 +7,42 @@
 </ion-header>
 
 <ion-content>
+  <section>
+    <ion-label class="heading">Let'us get started!</ion-label>
+    <ion-label class="center txt">Create an acccount to TenderApp to get all features</ion-label>
+  </section>
   <form #form="ngForm" (ngSubmit)="register(form)">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-            <h3>Create your account!</h3>
-          </div>
           <div padding>
             <ion-item>
-              <ion-input name="name" type="text" placeholder="Name" ngModel required></ion-input>
+              <ion-icon color="primary" name="person"></ion-icon>
+              <ion-input name="name" color="primary" type="text" placeholder="Name" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+              <ion-icon color="primary" name="mail"></ion-icon>
+              <ion-input name="email" color="primary" type="email" placeholder="your@email.com" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+              <ion-icon color="primary" name="lock-closed"></ion-icon>
+              <ion-input name="password" color="primary" type="password" placeholder="Password" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
+              <ion-icon color="primary" name="lock-closed"></ion-icon>
+              <ion-input name="confirm" color="primary" type="password" placeholder="Password again" ngModel required></ion-input>
             </ion-item>
           </div>
-          <div padding>
-            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+          <ion-grid>
+            <ion-row class="center ion-align-self-center">
+              <ion-button size="large" color="primary" type="submit" shape="round" [disabled]="form.invalid" expand="block">Register</ion-button>
+            </ion-row>
+          </ion-grid>
+          <div>
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
   </form>
-
+  <ion-label class="center txt color">Already have an account?<a routerLink="/login"> Login here</a> </ion-label>
 </ion-content>
