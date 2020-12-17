@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import firebase from "firebase/app";
 import "firebase/auth";
 import { AngularFireDatabase } from "@angular/fire/database";
+var provider = new firebase.auth.GoogleAuthProvider();
+var fbProvider = new firebase.auth.FacebookAuthProvider();
 
 @Component({
   selector: 'app-login',
@@ -34,5 +36,44 @@ export class LoginPage implements OnInit {
         var errorCode = error.code;
         var errorMessage = error.message;
       })
+  }
+  
+  loginWithGoogle=()=>{
+    firebase.auth().signInWithPopup(provider).then((result)=> {
+      var user = result.user;
+      console.log(user);
+      console.log('Logged In')
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  }
+
+  loginWithFb=()=>{
+    firebase.auth().signInWithPopup(fbProvider).then((result)=> {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      // var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      console.log(user);
+      console.log('Logged In')
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
   }
 }
