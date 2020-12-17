@@ -11,35 +11,35 @@
     <ion-label class="heading">Let's get started!</ion-label>
     <ion-label class="center txt">Create an acccount to TenderApp to get all features</ion-label>
   </section>
-  <form #form="ngForm" (ngSubmit)="register(form)">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
             <ion-item>
               <ion-icon color="primary" name="person"></ion-icon>
-              <ion-input name="name" color="primary" type="text" placeholder="Name" ngModel required></ion-input>
+              <ion-input name="name" color="primary" type="text" formControlName="name" placeholder="Name"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon color="primary" name="mail"></ion-icon>
-              <ion-input name="email" color="primary" type="email" placeholder="your@email.com" ngModel required></ion-input>
+              <ion-input name="email" color="primary" type="email" formControlName="email" placeholder="your@email.com"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon color="primary" name="call"></ion-icon>
-              <ion-input name="phone" color="primary" type="number" placeholder="Contact No" ngModel required></ion-input>
+              <ion-input name="phone" color="primary" type="number" formControlName="contact" placeholder="Contact No"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon color="primary" name="lock-closed"></ion-icon>
-              <ion-input name="password" color="primary" type="password" placeholder="Password" ngModel required></ion-input>
+              <ion-input name="password" color="primary" type="password" formControlName="password" placeholder="Password"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon color="primary" name="lock-closed"></ion-icon>
-              <ion-input name="confirm" color="primary" type="password" placeholder="Password again" ngModel required></ion-input>
+              <ion-input name="confirm" color="primary" type="password" formControlName="confirmPassword" placeholder="Password again"></ion-input>
             </ion-item>
           </div>
           <ion-grid>
             <ion-row class="center ion-align-self-center">
-              <ion-button size="large" color="primary" type="submit" shape="round" [disabled]="form.invalid" expand="block">Register</ion-button>
+              <ion-button size="large" color="primary" type="submit" shape="round" [disabled]="registerForm.invalid" expand="block">Register</ion-button>
             </ion-row>
           </ion-grid>
           <div>
