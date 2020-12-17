@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import firebase from "firebase/app";
 import "firebase/auth";
 import { AngularFireDatabase } from "@angular/fire/database";
+import { Storage } from '@ionic/storage';
 var provider = new firebase.auth.GoogleAuthProvider();
 var fbProvider = new firebase.auth.FacebookAuthProvider();
 
@@ -14,8 +15,9 @@ var fbProvider = new firebase.auth.FacebookAuthProvider();
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  constructor(private router: Router, private afDb: AngularFireDatabase) { }
+  errorMessage="";
+  constructor(private router: Router, private afDb: AngularFireDatabase,
+    private storage:Storage) { }
   loginForm = new FormGroup({
     email: new FormControl('',[Validators.email]),
     password: new FormControl('',[Validators.required])
@@ -23,6 +25,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   
+  ionViewWillEnter() {
+    this.errorMessage="";
+    this.loginForm.reset();
+  }
   login() {
     console.log(this.loginForm);
     const formValue = this.loginForm.value;
@@ -30,11 +36,12 @@ export class LoginPage implements OnInit {
     firebase.auth().signInWithEmailAndPassword(formValue.email, formValue.password)
       .then((user) => {
         console.log(user);
+        this.storage.set('user', user);
         this.router.navigate(['/dashboard'])
       }).catch((error) => {
         console.log(error)
         var errorCode = error.code;
-        var errorMessage = error.message;
+        this.errorMessage = error.message;
       })
   }
   
@@ -42,12 +49,13 @@ export class LoginPage implements OnInit {
     firebase.auth().signInWithPopup(provider).then((result)=> {
       var user = result.user;
       console.log(user);
-      console.log('Logged In')
+      console.log('Logged In');
+      this.router.navigate(['/dashboard']);
       // ...
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
-      var errorMessage = error.message;
+      this.errorMessage = error.message;
       // The email of the user's account used.
       var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
@@ -63,8 +71,8 @@ export class LoginPage implements OnInit {
       // The signed-in user info.
       var user = result.user;
       console.log(user);
-      console.log('Logged In')
-      // ...
+      console.log('Logged In');
+      this.router.navigate(['/dashboard']);
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;

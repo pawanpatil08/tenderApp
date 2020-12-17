@@ -21,6 +21,9 @@
       <ion-input type="password" color="primary" shape="round" placeholder="******" formControlName="password" required>
       </ion-input>
     </ion-item>
+    <ion-item no-lines *ngIf="errorMessage">
+      <ion-label class="ion-text-wrap" color="danger">{{errorMessage}}</ion-label>
+    </ion-item>
     <ion-grid>
       <ion-row class="center ion-align-self-center">
         <ion-button [disabled]="loginForm.invalid" shape="round" (click)="login()" color="primary">Login

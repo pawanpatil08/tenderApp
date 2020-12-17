@@ -1,9 +1,14 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>dashboard</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false" color="primary"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <section>
+    <ion-label class="heading">Dashboard </ion-label>
+    <ion-label class="center txt">Log in to your existing account</ion-label>
+  </section>
 </ion-content>
