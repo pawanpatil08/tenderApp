@@ -1,0 +1,17 @@
+@mixin center {
+    display: flex;
+    justify-content: center;
+
+}
+.heading {
+    @include center();
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10%;
+}
+.center{
+    @include center();
+}
+.txt{
+    margin-top: 2%;
+}

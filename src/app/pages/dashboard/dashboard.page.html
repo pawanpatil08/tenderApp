@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button auto-hide="false" color="primary"></ion-menu-button>
@@ -9,6 +9,17 @@
 <ion-content>
   <section>
     <ion-label class="heading">Dashboard </ion-label>
-    <ion-label class="center txt">Log in to your existing account</ion-label>
   </section>
-</ion-content>
+
+    <ion-list>
+      <ion-item *ngFor="let item of tenderList">
+        <ion-label >{{item}}</ion-label>
+        <ion-toggle slot="end" name="{{item}}"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row class="center ion-align-self-center">
+        <ion-button size="large" color="primary" type="submit" shape="round" expand="block">Save Prefrences</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
