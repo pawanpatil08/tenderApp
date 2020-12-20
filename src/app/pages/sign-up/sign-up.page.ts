@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import { AngularFirestore } from '@angular/fire/firestore';
-import { FormControl, FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import firebase from "firebase/app";
 import "firebase/auth";
 import { AngularFireDatabase } from "@angular/fire/database";
-import { NodeWithI18n } from '@angular/compiler';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
@@ -16,7 +16,8 @@ export class SignUpPage implements OnInit {
 
   constructor(private router: Router,
     private afDb: AngularFireDatabase,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -40,22 +41,38 @@ export class SignUpPage implements OnInit {
 
   register() {
     const formValue = this.registerForm.value;
-    console.log(formValue);
     firebase.auth().createUserWithEmailAndPassword(formValue.email, formValue.password)
       .then((user) => {
-        console.log(user)
         this.afDb.object("users/" + user.user.uid).set({
           email: formValue.email,
           name: formValue.name,
           uid: user.user.uid,
           contact: formValue.contact,
           createdAt: Date.now()
-        }).then(()=>{
-              this.router.navigate(['/login'])
+        }).then(() => {
+          const successMessgae = 'You have successfully register yourself.'
+          this.presentToast(successMessgae, 'primary');
+          setTimeout(() => {
+            this.router.navigate(['/login'])
+          }, 2000);
         }).catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
+          const errorMessage = error.message;
+          this.presentToast(errorMessage, 'danger');
         })
+      }).catch((error) => {
+        const errorMessage = error.message;
+        this.presentToast(errorMessage, 'danger');
       })
+  }
+
+  async presentToast(message, color) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      animated: true,
+      color: color
+    });
+    toast.present();
   }
 }

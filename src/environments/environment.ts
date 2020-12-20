@@ -4,15 +4,15 @@
 
 export const environment = {
   production: false,
- firebaseConfig : {
-  apiKey: "AIzaSyD32yJACs1c351kv7ft9ZmGOVQGA5Ima0s",
-  authDomain: "tenderapp-87315.firebaseapp.com",
-  projectId: "tenderapp-87315",
-  storageBucket: "tenderapp-87315.appspot.com",
-  messagingSenderId: "551415473569",
-  appId: "1:551415473569:web:22943d0ad394bd563a17e0",
-  measurementId: "G-GH1KLC8GNM"
-}
+  firebaseConfig: {
+    apiKey: "AIzaSyD32yJACs1c351kv7ft9ZmGOVQGA5Ima0s",
+    authDomain: "tenderapp-87315.firebaseapp.com",
+    projectId: "tenderapp-87315",
+    storageBucket: "tenderapp-87315.appspot.com",
+    messagingSenderId: "551415473569",
+    appId: "1:551415473569:web:22943d0ad394bd563a17e0",
+    measurementId: "G-GH1KLC8GNM"
+  }
 };
 
 /*

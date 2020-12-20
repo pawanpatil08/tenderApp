@@ -7,21 +7,11 @@ import { AngularFireDatabase } from "@angular/fire/database";
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  tenderList = ['Building Construction', 'Chemicals', 'Civil Works', 'Computer Equipment & Accessories', 'Furniture',
-    'Laboratory & scientific equipment', 'Road Construction', 'Scrap & waste materials',
-    'Software',
-    'Transportation Services'];
+  tenderList = [];
 
-  constructor( private afDb: AngularFireDatabase) { }
+  constructor(private afDb: AngularFireDatabase) { }
 
   ngOnInit() {
-    // this.afDb.database.
-    // this.afDb.list('tenderList').push(['Building Construction', 'Chemicals', 'Civil Works', 'Computer Equipment & Accessories', 'Furniture',
-    // 'Laboratory & scientific equipment', 'Road Construction', 'Scrap & waste materials',
-    // 'Software',
-    // 'Transportation Services']);
-      
-  
   }
 
 }
