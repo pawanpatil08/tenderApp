@@ -6,6 +6,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 var provider = new firebase.auth.GoogleAuthProvider();
 var fbProvider = new firebase.auth.FacebookAuthProvider();
 
@@ -16,13 +17,16 @@ var fbProvider = new firebase.auth.FacebookAuthProvider();
 })
 export class LoginPage implements OnInit {
   errorMessage = "";
+
   constructor(private router: Router, private afDb: AngularFireDatabase,
-    private storage: Storage) { }
+    private storage: Storage, private toastController: ToastController) { }
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.email]),
     password: new FormControl('', [Validators.required])
   });
+
   ngOnInit() {
+    this.presentToast('Welcome Again', 'primary');
   }
 
   ionViewWillEnter() {
@@ -83,5 +87,16 @@ export class LoginPage implements OnInit {
       var credential = error.credential;
       // ...
     });
+  }
+
+  async presentToast(message, color) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      animated: true,
+      color: color
+    });
+    toast.present();
   }
 }

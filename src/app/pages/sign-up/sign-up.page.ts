@@ -50,8 +50,8 @@ export class SignUpPage implements OnInit {
           contact: formValue.contact,
           createdAt: Date.now()
         }).then(() => {
-          const successMessgae = 'You have successfully register yourself.'
-          this.presentToast(successMessgae, 'primary');
+          const successMessgae = 'You have successfully register yourself. Please login'
+          this.presentToast(successMessgae, 'success');
           setTimeout(() => {
             this.router.navigate(['/login'])
           }, 2000);
