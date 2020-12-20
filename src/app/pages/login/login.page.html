@@ -7,6 +7,7 @@
 </ion-header>
 <ion-content>
   <section>
+    <ion-img style="width:80%;margin: 0% 10%;" src="../assets/img/login.svg"></ion-img>
     <ion-label class="heading">Welcome Back </ion-label>
     <ion-label class="center txt">Log in to your existing account</ion-label>
   </section>
@@ -21,6 +22,7 @@
       <ion-input type="password" color="primary" shape="round" placeholder="******" formControlName="password" required>
       </ion-input>
     </ion-item>
+  <ion-label class="end mt-2" color="primary"> <a routerLink="/reset-password"> Reset Password</a> </ion-label>
     <ion-item no-lines *ngIf="errorMessage">
       <ion-label class="ion-text-wrap" color="danger">{{errorMessage}}</ion-label>
     </ion-item>
@@ -37,5 +39,4 @@
     <ion-img src="../assets/img/google.png" (click)="loginWithGoogle()"></ion-img>
   </section>
   <ion-label class="center txt color">Don't have account? &nbsp; <a routerLink="/sign-up"> Sign up</a> </ion-label>
-  <ion-label class="center txt color"> <a routerLink="/reset-password"> Reset Password</a> </ion-label>
 </ion-content>

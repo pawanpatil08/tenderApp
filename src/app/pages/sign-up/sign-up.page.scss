@@ -1,5 +1,5 @@
 ion-content{
-    
+    // --background: linear-gradient(15deg, rgb(250 246 246) 0%, rgb(253 253 253) 13.5%, rgb(255 255 255) 33.33%, rgb(238 241 240) 100%) !important;
     @mixin center {
         display: flex;
         justify-content: center;
@@ -23,8 +23,11 @@ ion-content{
     }
     form {
         margin: 8%;
-        ion-item{
+        ion-item {
+            // margin-bottom: 5%;
             margin-bottom: 5%;
+            border-radius: 50px;
+            border: 1px solid #43cebb;
         }
         ion-icon{
             font-size: 15px;

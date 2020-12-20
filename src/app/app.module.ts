@@ -10,11 +10,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+// import { Stripe } from "@ionic-native/stripe/ngx";
 
 import { environment } from "../environments/environment";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { WebIntent } from '@ionic-native/web-intent/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -34,7 +36,8 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    WebIntent 
   ],
   bootstrap: [AppComponent]
 })
