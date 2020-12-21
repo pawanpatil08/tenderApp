@@ -33,30 +33,46 @@ export class DashboardPage implements OnInit {
   }
 
   pay() {
-    this.payeeVPA = '9595114164@upi';
-    this.payeeName = 'Pawan%20Patil';
-    this.payAmount = 10;
-    this.transactionReference = '#87148172'; //ORDER ID or Something similar
+    const tid = this.getRandomString();
+    const orderId = this.getRandomString();
+    const totalPrice = 1.00;
+    const UPI_ID = '******';
+    const UPI_NAME = 'Pawan Patil';
+    const UPI_TXN_NOTE = 'TEST TXN';
+    // tslint:disable-next-line: max-line-length
+    let uri = `upi://pay?pa=${UPI_ID}&pn=${UPI_NAME}&tid=${tid}&am=${totalPrice}&cu=INR&tn=${UPI_TXN_NOTE}&tr=${orderId}`;
+    uri = uri.replace(' ', '+');
+    (window as any).plugins.intentShim.startActivityForResult(
+      {
+        action: this.webIntent.ACTION_VIEW,
+        url: uri,
+        requestCode: 1
+      }, intent => {
+        if (intent.extras.requestCode === 1 &&
+            intent.extras.resultCode === (window as any).plugins.intentShim.RESULT_OK &&
+            intent.extras.Status &&
+            (((intent.extras.Status as string).toLowerCase()) === ('success'))) {
+          this.paymentSuccess(orderId, 'UPI');
+        } else {
+          alert('payment failed');
+        }
+      }, err => {
+        alert('error ' + err);
+      });
+  }
 
-    const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
-    const options = {
-      action: this.webIntent.ACTION_VIEW,
-      url
-    };
-    this.webIntent.startActivityForResult(options).then(success => {
-      console.log(success);
-      if(success.extras.Status == 'SUCCESS') {
-        // SUCCESS RESPONSE
-      } else if(success.extras.Status == 'SUBMITTED') {
-        // SUBMITTED RESPONSE
-      } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
-        // FAILED RESPONSE
-      } else {
-        // FAILED RESPONSE
-      }
-    }, error => {
-      console.log(error);
-    });
+  getRandomString() {
+    const len = 10;
+    const arr = '1234567890asdfghjklqwertyuiopzxcvbnmASDFGHJKLQWERTYUIOPZXCVBNM';
+    let ans = '';
+    for (let i = len; i > 0; i--) {
+        ans += arr[Math.floor(Math.random() * arr.length)];
+    }
+    return ans;
+  }
+
+  paymentSuccess(orderId: string, paymentMethod: string) {
+    alert(`Payment successful Order Id ${orderId} payment method ${paymentMethod}`);
   }
 
 }

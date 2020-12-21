@@ -88,8 +88,8 @@
       "com-darryncampbell-cordova-plugin-intent": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }

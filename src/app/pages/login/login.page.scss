@@ -1,10 +1,17 @@
 ion-content {
-    --background: linear-gradient(
-        15deg,
-        rgb(250 246 246) 0%,
-        rgb(253 253 253) 13.5%,
-        rgb(255 255 255) 33.33%,
-        rgb(238 241 240) 100%
+    // --background: linear-gradient(
+    //     15deg,
+    //     rgb(250 246 246) 0%,
+    //     rgb(253 253 253) 13.5%,
+    //     rgb(255 255 255) 33.33%,
+    //     rgb(238 241 240) 100%
+    // ) !important;
+     --background: linear-gradient(
+        493deg,
+        rgb(250 246 246) 20%,
+        rgb(253 253 254) -20.5%,
+        rgb(255 255 255) 80.33%,
+        rgb(238 241 240) 0%
     ) !important;
     @mixin center {
         display: flex;
