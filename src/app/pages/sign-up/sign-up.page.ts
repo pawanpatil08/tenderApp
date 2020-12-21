@@ -7,6 +7,7 @@ import "firebase/auth";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { ToastController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
+import { ToastService } from 'src/app/services/toast.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
@@ -19,7 +20,7 @@ export class SignUpPage implements OnInit {
   constructor(private router: Router,
     private afDb: AngularFireDatabase,
     private formBuilder: FormBuilder,
-    public toastController: ToastController
+    public toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -49,7 +50,7 @@ export class SignUpPage implements OnInit {
           response.forEach(obj => {
             if (obj['contact'] === formValue.contact) {
               const errorMessage = 'You have already registered your mobile no' + formValue.contact;
-              this.presentToast(errorMessage, 'danger');
+              this.toastService.presentToast(errorMessage, 'danger');
               return;
             }
           })
@@ -62,28 +63,18 @@ export class SignUpPage implements OnInit {
           createdAt: Date.now()
         }).then(() => {
           const successMessgae = 'You have successfully register yourself. Please login'
-          this.presentToast(successMessgae, 'success');
+          this.toastService.presentToast(successMessgae, 'success');
           setTimeout(() => {
             this.router.navigate(['/login'])
           }, 2000);
         }).catch((error) => {
           const errorMessage = error.message;
-          this.presentToast(errorMessage, 'danger');
+          this.toastService.presentToast(errorMessage, 'danger');
         })
       }).catch((error) => {
         const errorMessage = error.message;
-        this.presentToast(errorMessage, 'danger');
+        this.toastService.presentToast(errorMessage, 'danger');
       })
   }
 
-  async presentToast(message, color) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 3000,
-      position: 'top',
-      animated: true,
-      color: color
-    });
-    toast.present();
-  }
 }
