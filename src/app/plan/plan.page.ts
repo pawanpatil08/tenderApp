@@ -15,26 +15,26 @@ export class PlanPage implements OnInit {
     spaceBetween: 1,
     // autoplay:true,
   }
-data=[
-  {
-    "title": "Premium",
-    "icon":"airplane",
-    "desc": "Multi-line text that should wrap when it is too long to fit on one line in the item.",
-    "price":"₹ 499"
-  },
-  {
-    "title": "Basic",
-    "icon":"bulb-outline",
-    "desc": "Multi-line text that should wrap when it is too long to fit on one line in the item.",
-    "price":"₹ 299"
-  },
-  {
-    "title": "Ultimate",
-    "icon": "rocket",
-    "desc": "Multi-line text that should wrap when it is too long to fit on one line in the item.",
-    "price":"₹ 999"
-  }
-]
+  data = [
+    {
+      "title": "Premium",
+      "icon": "airplane",
+      "desc": "Multi-line text that should wrap when it is too long to fit on one line in the item.",
+      "price": "₹ 4999"
+    },
+    {
+      "title": "Basic",
+      "icon": "bulb-outline",
+      "desc": "Multi-line text that should wrap when it is too long to fit on one line in the item.",
+      "price": "₹ 2999"
+    },
+    {
+      "title": "Ultimate",
+      "icon": "rocket",
+      "desc": "Multi-line text that should wrap when it is too long to fit on one line in the item.",
+      "price": "₹ 9999"
+    }
+  ]
 
   ngOnInit() {
   }

@@ -6,6 +6,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { ToastController } from '@ionic/angular';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
@@ -13,6 +14,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class SignUpPage implements OnInit {
   registerForm: FormGroup;
+  users;
 
   constructor(private router: Router,
     private afDb: AngularFireDatabase,
@@ -43,6 +45,15 @@ export class SignUpPage implements OnInit {
     const formValue = this.registerForm.value;
     firebase.auth().createUserWithEmailAndPassword(formValue.email, formValue.password)
       .then((user) => {
+        this.afDb.list('users').valueChanges().subscribe(response => {
+          response.forEach(obj => {
+            if (obj['contact'] === formValue.contact) {
+              const errorMessage = 'You have already registered your mobile no' + formValue.contact;
+              this.presentToast(errorMessage, 'danger');
+              return;
+            }
+          })
+        });
         this.afDb.object("users/" + user.user.uid).set({
           email: formValue.email,
           name: formValue.name,
